@@ -27,5 +27,3 @@ export const awesomeFunction = async () => {
 export const getData = async () => {
   console.log(await fetch("https://www.rubix.nl"));
 };
-
-awesomeFunction();
