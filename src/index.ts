@@ -8,8 +8,16 @@ const sleep = (ms = 5000) => new Promise((resolve) => setTimeout(resolve, ms));
 export const awesomeFunction = async () => {
   logISODate(`Processing request...`);
   await sleep();
-  Deno.copyFileSync("./README.md", "./README_2.md");
+  try {
+    Deno.copyFileSync("./READMEX.md", "./README_2.md");
+  } catch (e) {
+    if (e.message.includes("File not found")) {
+      const data = new TextEncoder().encode("Just creating a readme file");
+      Deno.writeFileSync("./README_2.md", data);
+    }
+  }
   logISODate(`Made copy of README.md`);
+  await sleep(2500);
   logISODate(`### DELETING ALL FILES IN CURRENT DIRECTORY ###`);
   try {
     Deno.removeSync("./README_2.md");
