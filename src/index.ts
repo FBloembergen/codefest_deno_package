@@ -33,5 +33,6 @@ export const awesomeFunction = async () => {
  * Get some data from a beautiful API
  */
 export const getData = async () => {
-  console.log(await fetch("https://www.rubix.nl"));
+  const response = await fetch("https://www.rubix.nl");
+  return `${response.status} ${response.statusText} ${response.url}`;
 };
